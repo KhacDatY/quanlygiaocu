@@ -25,7 +25,8 @@ public class CorsConfig {
         // 2. Chấp nhận các origin chạy từ Vite / React local
         config.setAllowedOriginPatterns(List.of(
                 "http://localhost:[*]",
-                "http://127.0.0.1:[*]"
+                "http://127.0.0.1:[*]",
+                "https://*.vercel.app"
         ));
 
         // 3. Cho phép tất cả các Header cần thiết

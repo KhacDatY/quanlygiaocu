@@ -33,6 +33,7 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 }

@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8080/ql_giaocu', 
+  // Sử dụng biến môi trường VITE_API_URL
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080/ql_giaocu', 
   headers: { 'Content-Type': 'application/json' }
 });
 
@@ -16,12 +17,12 @@ apiClient.interceptors.request.use((config) => {
 
 // Bóc tách dữ liệu và xử lý lỗi 401 (Hết hạn đăng nhập)
 apiClient.interceptors.response.use(
-  (response) => response.data.result, // Lấy thẳng vào trường 'result' của ApiResponse
+  (response) => response.data.result, 
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/'; // Đẩy về trang đăng nhập
+      window.location.href = '/'; 
     }
     return Promise.reject(error.response?.data || error);
   }
